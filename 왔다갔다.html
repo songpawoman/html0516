@@ -52,27 +52,13 @@
             //stage에 자식요소로 부착 
             stage.appendChild(img);
         }
+        let flag=true;
+        let step=5;
 
         //우주선 x축 위치 변경하기 
         function moveRight(){
             //문서내의  우주선  img요소의 style 중 left값 증가 
-            n = n +5;
             img.style.left=n+"px";
-        }
-
-        function moveLeft(){
-            n = n-5;
-            img.style.left=n+"px";
-        }
-
-        function moveUp(){
-            s=s-5;
-            img.style.top=s+"px";
-        }
-
-        function moveDown(){
-            s=s+5;
-            img.style.top=s+"px";
         }
 
         window.addEventListener("load", function(){
@@ -85,73 +71,18 @@
             createPlane();//우주선 등장 함수 호출 
 
             //버튼 4개 각각에 대해 이벤트 연결 
-            let bt_up=document.getElementById("bt_up");
-            let bt_left=document.getElementById("bt_left");
-            let bt_down=document.getElementById("bt_down");
-            let bt_right=document.getElementById("bt_right");
+            let bt=document.querySelector("button");
 
-            bt_up.addEventListener("click", function(){
-                moveUp();
-            });
-
-            bt_left.addEventListener("click", function(){
-                moveLeft();
-            });
-
-            bt_down.addEventListener("click", function(){
-                moveDown();
-            });
-
-            bt_right.addEventListener("click", function(){
+            bt.addEventListener("click", function(){
                 moveRight();
             });
-
-            //body에 키보드 이벤트 연결하기 
-            document.body.addEventListener("keydown", function(){
-                let key=event.keyCode; //우리가 누른 키보드에 해당하는 아스키코드
-                console.log("당신이 누른 키값은 " ,  key);
-                /*
-                if(누른키보드값이 ==ASCII코드의 우측방향키){
-                    console.log("우측 키보드 눌렀어?");
-                }
-                */
-               
-                /*
-               if(key == 37){//좌측 키
-                    moveLeft();
-               }else if(key == 38){//상단 키
-                    moveUp();
-               }else if(key == 39){//우측 키
-                    moveRight();
-               }else if(key == 40){//하단 키
-                    moveDown();
-               }
-               */
-               switch(key){
-                    case 37:  moveLeft(); break;             
-                    case 38:  moveUp(); break;              
-                    case 39:  moveRight(); break;              
-                    case 40:  moveDown(); break;              
-               }
-            });
+            
         });        
     </script>
 </head>
 <body>
     <div id="stage">
-        <table border="0px">
-            <tr>
-                <td></td>
-                <td><button id="bt_up">▲</button></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><button id="bt_left">◀</button></td>
-                <td><button id="bt_down">▼</button></td>
-                <td><button id="bt_right">▶</button></td>
-            </tr>
-        </table>   
-             
+        <button>이동</button>                    
     </div>
 </body>
 </html>
