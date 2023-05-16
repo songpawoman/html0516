@@ -43,6 +43,9 @@
         //왜 ?? 코드를 분석할때마다 변수를 찾아야 하니깐..코드량이 몇천줄
         //이상되면 찾는거 포기해야 함...
         let img; //겔러리의 큰 사진 이미지
+        let n=1;//이미지의 이름을 결정짓는 숫자 , 전역으로 선언한 이유?
+        //프로그램 가동되는 동안에 그값을 계속 유지한 상태에서 증가시키거나
+        //감소시켜야 하므로...
 
         function init(){
             //문서가 로드되면, side  요소안에 이미지들을 동적
@@ -66,6 +69,14 @@
             bt_prev.addEventListener("click", function(){
                 //이전 사진 나오게 처리 
                 console.log("이전 사진");
+
+                if(n>1){
+                    n--; 
+                    img.src="../images/m"+n+".jpg";
+                }else{
+                    alert("이전 사진이 없습니다");
+                }
+
             });
 
             bt_next.addEventListener("click", function(){
@@ -73,7 +84,13 @@
                 console.log("다음 사진");
                 
                 //문서내의 큰 사진(전역변수화 시킴)의 src값을 다음 값으로 교체 
-                img.src="../images/m2.jpg";
+                n++;
+                img.src="../images/m"+n+".jpg";
+
+                //아래의 코드 영역은 n이 10을 넘어설때만 실행되는 조건문의 영역
+                if(n>10){ 
+                    alert("더이상 사진이 없습니다");
+                }        
             });
 
         }   
